@@ -1,4 +1,4 @@
-English | [简体中文](./README.zh-CN.md)
+[English](./README.md) | 简体中文
 
 <h1 align="center">Jim-vue</h1>
 <div align="center">
@@ -15,42 +15,53 @@ English | [简体中文](./README.zh-CN.md)
 
 Overview
 ----
-
+ - 基于Antd-Pro-Vue改造，增加了多头分页tabs/ VScode保存自动eslint格式化代码（多人协同开发） 此处需要在VScode中安装ESlint插件并修改配置具体步骤见
+ - 博客 ：https://www.cnblogs.com/huoshengmiao/p/14903313.html
+ - 同时解决初始化重定向问题
+ - 正则表达式多种校验封装文件src->utils->validator.js
+ - WebSocket实时通信封装src->utils->BigScreenWebSocket.js 用于可视化大屏的实时通信相比前端定时向服务器发起请求，极大的减少了不必要的网络流量与延迟。
+ - 具体请看https://www.php.cn/faq/465597.html
+ - 默认主题色已修改图片待换
 ![dashboard](https://static-2.loacg.com/open/static/github/SP1.png)
 
-### Env and dependencies
+环境和依赖
+----
 
 - node
 - yarn
 - webpack
 - eslint
 - @vue/cli
-- [ant-design-vue@1.x](https://github.com/vueComponent/ant-design-vue) - Ant Design Of Vue 
-- [vue-cropper](https://github.com/xyxiao001/vue-cropper) - Picture edit
-- [@antv/g2](https://antv.alipay.com/zh-cn/index.html) - AntV G2
-- [Viser-vue](https://viserjs.github.io/docs.html#/viser/guide/installation)  - Antv/G2 of Vue
+- [ant-design-vue@1.x](https://github.com/vueComponent/ant-design-vue) - Ant Design Of Vue 实现
+- [vue-cropper](https://github.com/xyxiao001/vue-cropper) - 头像裁剪组件
+- [@antv/g2](https://antv.alipay.com/zh-cn/index.html) - Alipay AntV 数据可视化图表
+- [Viser-vue](https://viserjs.github.io/docs.html#/viser/guide/installation)  - antv/g2 封装实现
 
-> Note:  [Yarn](https://yarnpkg.com/) package management is recommended, the exact same version loaded with the demo site of this project (yarn.lock) . but you can also use npm
+> 请注意，我们强烈建议本项目使用 [Yarn](https://yarnpkg.com/) 包管理工具，这样可以与本项目演示站所加载完全相同的依赖版本 (yarn.lock) 。由于我们没有对依赖进行强制的版本控制，采用非 yarn 包管理进行引入时，可能由于 Pro 所依赖的库已经升级版本而引入了新版本所导致的问题。作者可能会由于时间问题无法及时排查而导致您采用本项目作为基项目而出现问题。
+
+在antd->a-select标签用v-mode双向数据绑定同时placeholder='提示'时，在data中声明的变量需要赋值undefined,否则placeholder无效，
+切记不要将使用Element-ui库的习惯用在antd-ui库中！！！
 
 
-### Project setup
+项目下载和运行
+----
 
-- Clone repo
+- 拉取项目代码
 ```bash
 git clone https://gitee.com/music_poor/Jim-vue2.6.git
 ```
 
-- Install dependencies
+- 安装依赖
 ```
 yarn install
 ```
 
-- Compiles and hot-reloads for development
+- 开发模式运行
 ```
 yarn run serve
 ```
 
-- Compiles and minifies for production
+- 编译项目
 ```
 yarn run build
 ```
@@ -61,25 +72,27 @@ yarn run lint
 ```
 
 
-### Other
 
-- **IMPORTANT : About Issue feedback !! when opening Issue read [Issue / PR Contributing](https://github.com/vueComponent/ant-design-vue-pro/issues/90)**
+其他说明
+----
 
-- [Vue-cli3](https://cli.vuejs.org/guide/) used by the project.
+- **关于 Issue 反馈 (重要!重要!重要!) 请在开 *Issue* 前，先阅读该内容：[Issue / PR 编写建议](https://github.com/vueComponent/ant-design-vue-pro/issues/90)** 
 
-- Disable Eslint (not recommended): remove `eslintConfig`  field in `package.json`  and `vue.config.js` field `lintOnSave: false`
+- 项目使用的 [vue-cli3](https://cli.vuejs.org/guide/), 请确保你所使用的 vue-cli 是新版，并且已经学习 cli 官方文档使用教程
 
-- Load on Demand `/src/main.js` L14, in `import './core/lazy_use'`, `import './core/use''`. more [load-on-demand.md](./docs/load-on-demand.md)
+- 关闭 Eslint (不推荐) 移除 `package.json` 中 `eslintConfig` 整个节点代码, `vue.config.js` 下的 `lintOnSave` 值改为 `false`
 
-- Customize Theme:  [Custom Theme Config (@kokoroli)](https://github.com/kokoroli/antd-awesome/blob/master/docs/Ant_Design_%E6%A0%B7%E5%BC%8F%E8%A6%86%E7%9B%96.md)
+- 组件按需加载 `/src/main.js` L14 相关代码 `import './core/lazy_use'` / `import './core/use'` 
 
-- I18n: [locales (@musnow)](./src/locales/index.js)
+- [修改 Ant Design 配色 (@kokoroli)](https://github.com/kokoroli/antd-awesome/blob/master/docs/Ant_Design_%E6%A0%B7%E5%BC%8F%E8%A6%86%E7%9B%96.md)
 
-- Production env `mock` is disabled. use `src/mock/index.js`
+- I18n: [多语言支持 (@musnow)](./src/locales/index.js) 这里基本路由已被改成中文，如需要国际自行修改（默认改为中文）
 
-- pls use `release` version
+- 生产环境默认不加载 `mock`，更多详情请看 `src/mock/index.js`
 
-## Browsers support
+- **用于生产环境，请使用 `release` 版本代码，使用 master 代码出现的任何问题需要你自行解决**
+
+## 浏览器兼容
 
 Modern browsers and IE10.
 
@@ -87,9 +100,3 @@ Modern browsers and IE10.
 | --- | --- | --- | --- | --- |
 | IE10, Edge | last 2 versions | last 2 versions | last 2 versions | last 2 versions |
 
-
-## Contributors
-
-This project exists thanks to all the people who contribute. 
-<a href="https://github.com/vueComponent/ant-design-vue-pro/graphs/contributors"><img src="https://opencollective.com/ant-design-pro-vue/contributors.svg?width=890&button=false" /></a>
-# Jim-vue
